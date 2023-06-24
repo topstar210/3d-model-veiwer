@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css"
+import { useState, useRef } from "react";
+import { ModelViewer } from "./components/ModelViewer";
 
 function App() {
+  const [file, setFile] = useState<File | null>(null);
+
+  const hiddenFileInput = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    hiddenFileInput.current?.click();
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const uploadedFile = event.target.files?.[0];
+    setFile(uploadedFile ?? null);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <input type="file" ref={hiddenFileInput} onChange={handleFileUpload} />
+      <button onClick={handleClick} className="file-upload">
+        Upload a file
+      </button>
+
+      {file && <ModelViewer modelData={{
+        url: URL.createObjectURL(file),
+        extension: file?.name.split('.')[1]
+      }} />}
     </div>
   );
 }

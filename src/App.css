@@ -1,38 +1,37 @@
-.App {
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+.main {
+  width: 100%;
+  height: calc(100vh - 100px);
+}
+
+input[type='file'] {
+  display: none;
+}
+
+button {
+  background-color: #04AA6D !important;
+  border-radius: 5px;
+  font-size: 17px;
+  padding: 8px 18px;
+  color: #FFFFFF;
+  border: none;
   text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button:hover {
+  background-color: #059862 !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.file-upload {
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
 }
