@@ -47,14 +47,11 @@ function ModelViewer({ modelData }: ModelViewerProps) {
     const modelUrl = modelData?.url;
     const extension = modelData?.extension;
 
-    console.log(modelData, "modelData")
-    console.log(modelUrl, "modelUrl")
-
     return (
         <Canvas camera={{ position: [0, 0, 3], near: 0.1 }} >
             <ambientLight />
             <Suspense fallback={<Loader />}>
-                <mesh position={[0, -1, 0]}>
+                <mesh position={[0, -0.5, 0]}>
                     {extension?.toLowerCase() === 'glb' && <GLTFModel modelUrl={modelUrl} />}
                     {extension?.toLowerCase() === 'fbx' && <FBXModel modelUrl={modelUrl} />}
                     {extension?.toLowerCase() === 'obj' && <OBJModel modelUrl={modelUrl} />}
