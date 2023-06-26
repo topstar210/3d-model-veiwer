@@ -31,6 +31,12 @@ function App() {
           }}
         />
       }
+      {
+        !file &&
+        <div className="empty-msg">
+          Please upload 3D(.glb, .obj, .fbx) or 2D(.webp, .png, .jpg) images
+        </div>
+      }
     </div>
   );
 }

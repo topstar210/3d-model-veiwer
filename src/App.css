@@ -35,3 +35,11 @@ button:hover {
   margin-top: 10px;
   margin-right: 10px;
 }
+
+.empty-msg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}

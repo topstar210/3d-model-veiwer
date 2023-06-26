@@ -58,6 +58,7 @@ function ModelViewer({ modelData }: ModelViewerProps) {
                     {['webp', 'png', 'jpg'].includes(extension?.toLowerCase()) && (
                         <ModelViewerImage imageUrl={modelUrl} />
                     )}
+                    <>asdfasdf</>
                 </mesh>
             </Suspense>
             <OrbitControls />
