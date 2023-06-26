@@ -1,6 +1,6 @@
 import "./App.css"
 import { useState, useRef } from "react";
-import { ModelViewer } from "./components/ModelViewer";
+import ModelViewer from "./components/ModelViewer";
 
 function App() {
   const [file, setFile] = useState<File | null>(null);
@@ -23,10 +23,14 @@ function App() {
         Upload a file
       </button>
 
-      {file && <ModelViewer modelData={{
-        url: URL.createObjectURL(file),
-        extension: file?.name.split('.')[1]
-      }} />}
+      {
+        file && <ModelViewer
+          modelData={{
+            url: URL.createObjectURL(file),
+            extension: file.name.split(".").pop()?.toLowerCase() || ""
+          }}
+        />
+      }
     </div>
   );
 }

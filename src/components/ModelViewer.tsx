@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Canvas } from "react-three-fiber";
+import { Canvas } from '@react-three/fiber'
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { useLoader } from '@react-three/fiber'
 import {
@@ -9,6 +9,7 @@ import {
     Html,
     useProgress,
 } from "@react-three/drei";
+import ModelViewerImage from './ModelViewerImage';
 
 
 type ModelProps = {
@@ -42,30 +43,29 @@ function Loader() {
     return <Html center>{progress} % loaded</Html>
 }
 
-export function ModelViewer({ modelData }: ModelViewerProps) {
+function ModelViewer({ modelData }: ModelViewerProps) {
     const modelUrl = modelData?.url;
     const extension = modelData?.extension;
 
+    console.log(modelData, "modelData")
+    console.log(modelUrl, "modelUrl")
+
     return (
-        <Canvas camera={{ position: [0, 0, 3], near: 0.02 }} >
+        <Canvas camera={{ position: [0, 0, 3], near: 0.1 }} >
             <ambientLight />
             <Suspense fallback={<Loader />}>
                 <mesh position={[0, -1, 0]}>
-                    {
-                        extension.toLocaleLowerCase() === "glb" &&
-                        <GLTFModel modelUrl={modelUrl} />
-                    }
-                    {
-                        extension.toLocaleLowerCase() === "fbx" &&
-                        <FBXModel modelUrl={modelUrl} />
-                    }
-                    {
-                        extension.toLocaleLowerCase() === "obj" &&
-                        <OBJModel modelUrl={modelUrl} />
-                    }
+                    {extension?.toLowerCase() === 'glb' && <GLTFModel modelUrl={modelUrl} />}
+                    {extension?.toLowerCase() === 'fbx' && <FBXModel modelUrl={modelUrl} />}
+                    {extension?.toLowerCase() === 'obj' && <OBJModel modelUrl={modelUrl} />}
+                    {['webp', 'png', 'jpg'].includes(extension?.toLowerCase()) && (
+                        <ModelViewerImage imageUrl={modelUrl} />
+                    )}
                 </mesh>
             </Suspense>
             <OrbitControls />
         </Canvas>
     );
 }
+
+export default ModelViewer
